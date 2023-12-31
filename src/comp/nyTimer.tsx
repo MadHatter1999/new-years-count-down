@@ -58,7 +58,7 @@ function NewYearCountdown() {
       <div className="ball-drop-container">
         <svg className="countdown-svg" viewBox="0 0 100 200">
           <line x1="50%" y1="5%" x2="50%" y2="95%" stroke="black" strokeWidth="2"/>
-          <image href={newYearBall} x="42.5%" y={`${5 + (85 * ballPosition / 100)}%`} height="20%" width="20%" />
+          <image href={newYearBall} x="40.5%" y={`${5 + (85 * ballPosition / 100)}%`} height="20%" width="20%" />
         </svg>
       </div>
     </div>

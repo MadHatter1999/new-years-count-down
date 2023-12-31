@@ -51,7 +51,7 @@ html, body {
 }
 
 line {
-  stroke: #ea8989;
+  stroke: #838383;
   stroke-width: 2;
 }
 
@@ -62,5 +62,63 @@ image {
 @media (min-width: 768px) {
   .countdown-svg {
     height: 90vh;
+  }
+}
+
+.event-popup {
+  position: relative; /* Inline for mobile */
+  top: auto;
+  left: auto;
+  transform: none;
+  width: 90%; /* Full width for mobile */
+  margin: 10px auto; /* Centered with margin */
+  background-color: rgba(255, 255, 255, 0.548);
+  color: black;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 1; /* Always visible on mobile */
+  transition: none; /* No transition needed for mobile */
+  text-align: center;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+
+.event-popup h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.event-popup p {
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+.event-popup span {
+  display: block;
+  font-size: 0.8em;
+  color: rgb(0, 0, 0);
+  margin-top: 10px;
+  text-align: right;
+}
+
+
+.fade-in {
+  opacity: 1;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+@media (min-width: 768px) {
+  .event-popup {
+    position: fixed; /* Fixed for larger screens */
+    top: 1em;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30em; /* Width for larger screens */
+    opacity: 1; /* Start with invisible popup */
+    transition: opacity 1s ease-in-out;
   }
 }
