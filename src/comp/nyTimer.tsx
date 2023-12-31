@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../css/App.css';
+import newYearBall from '../new-year.svg';
 
 interface TimeLeft {
   days: number;
@@ -51,17 +52,14 @@ function NewYearCountdown() {
     </div>
   );
 
-  const ballDropMessage = isItNewYearYet ? "The ball has dropped!" : "The ball is dropping...";
-
   return (
     <div className="NewYearCountdown">
       {countdownDisplay}
       <div className="ball-drop-container">
-        <svg height="200" width="100">
-          <line x1="50" y1="10" x2="50" y2="190" stroke="black" strokeWidth="2"/>
-          <circle cx="50" cy={10 + (180 * ballPosition / 100)} r="20" fill="red" />
+        <svg className="countdown-svg" viewBox="0 0 100 200">
+          <line x1="50%" y1="5%" x2="50%" y2="95%" stroke="black" strokeWidth="2"/>
+          <image href={newYearBall} x="42.5%" y={`${5 + (85 * ballPosition / 100)}%`} height="20%" width="20%" />
         </svg>
-        <p>{ballDropMessage}</p>
       </div>
     </div>
   );
