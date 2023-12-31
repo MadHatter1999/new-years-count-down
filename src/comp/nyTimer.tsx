@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import confetti from 'canvas-confetti';
 import '../css/App.css';
 import newYearBall from '../new-year.svg';
 
@@ -30,6 +31,16 @@ function NewYearCountdown() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | {}>(calculateTimeLeft());
   const [ballPosition, setBallPosition] = useState<number>(0);
 
+  const triggerConfetti = () => {
+    // Trigger confetti
+    confetti({
+      zIndex: 1000,
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+  };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       const newTimeLeft = calculateTimeLeft();
@@ -41,6 +52,13 @@ function NewYearCountdown() {
 
     return () => clearTimeout(timer);
   });
+
+  // Confetti trigger when countdown ends
+  useEffect(() => {
+    if (Object.keys(timeLeft).length === 0) {
+      triggerConfetti();
+    }
+  }, [timeLeft]);
 
   const isItNewYearYet = Object.keys(timeLeft).length === 0;
   const countdownDisplay = isItNewYearYet ? (
@@ -58,7 +76,14 @@ function NewYearCountdown() {
       <div className="ball-drop-container">
         <svg className="countdown-svg" viewBox="0 0 100 200">
           <line x1="50%" y1="5%" x2="50%" y2="95%" stroke="black" strokeWidth="2"/>
-          <image href={newYearBall} x="40.5%" y={`${5 + (85 * ballPosition / 100)}%`} height="20%" width="20%" />
+          <image
+            href={newYearBall} // Use href for image source
+            onClick={triggerConfetti} // Add the click event handler here
+            x="40.5%"
+            y={`${5 + (85 * ballPosition / 100)}%`}
+            height="20%"
+            width="20%"
+          />
         </svg>
       </div>
     </div>
